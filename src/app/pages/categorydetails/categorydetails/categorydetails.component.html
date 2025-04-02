@@ -1,0 +1,46 @@
+<section class="max-w-6xl mx-auto p-6">
+    <!-- Main Grid Container -->
+    <div class="grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-8">
+      
+      <!-- Left Column - Image Card -->
+      <div class="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100">
+        <img [src]="categorydetails.image" 
+             class="w-full h-80 object-contain"
+             [alt]="">
+        <div class="p-6">
+          <h1 class="text-3xl font-bold text-gray-900 mb-3">{{categorydetails.name}}</h1>
+          <div class="h-[3px] w-20 bg-gradient-to-r from-green-400 to-green-600 mb-4 rounded-full"></div>
+        </div>
+      </div>
+      <!-- Right Column - Details Grid -->
+      <div class="grid grid-cols-1 auto-rows-min">
+        <!-- Meta Data Card -->
+        <div class="bg-white p-6 rounded-xl shadow-lg border border-gray-100">
+          <h2 class="text-xl font-semibold text-gray-800 mb-4 border-b pb-2 border-gray-200">Category Info</h2>
+          <div class="space-y-4">
+            <div>
+              <p class="text-sm text-gray-500">Created</p>
+              <p class="font-medium">{{categorydetails.createdAt| date:'mediumDate'}}</p>
+            </div>
+            <div>
+              <p class="text-sm text-gray-500">Updated</p>
+              <p class="font-medium">{{categorydetails.updatedAt | date:'mediumDate'}}</p>
+            </div>
+            <div>
+              <p class="text-sm text-gray-500">Slug</p>
+              <p class="font-medium">{{categorydetails.slug}}</p>
+            </div>
+          </div>
+        </div>
+        <div class=" text-center mt-2">
+            <button routerLink="/categories" 
+                    class="px-8 py-3 bg-gradient-to-r from-green-500 to-green-600 text-white rounded-full shadow-lg hover:shadow-xl transition-all">
+              ← Back to Categories
+            </button>
+          </div>
+  
+      </div>
+    </div>
+    <!-- Back Button -->
+    
+  </section>

@@ -1,0 +1,43 @@
+
+<section>
+    <p class="bg-green-900 text-white font-medium w-fit mx-auto rounded-lg p-2 m-1 text-uppercase">My Favourite Items</p>
+    
+    <div class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10">
+        @for (wishProduct of wishList(); track wishProduct.id) {
+            <div class=" card border-green-400/50 rounded-md overflow-hidden shadow relative" >
+              
+                <div [routerLink]="['/details',wishProduct.id]">
+                  <div class="card-img">
+                    <img [src]="wishProduct.imageCover" class="w-full h-[250px] object-contain" alt="" />
+                  </div> 
+                  <div class="card-body px-2 py-4">
+                    <h4 class="text-green-700 text-xs">{{wishProduct.category.name}}</h4>
+                    <h3 class="font-medium">{{wishProduct.title.split(' ',2).join(' ')}}</h3>
+                    <div class="flex justify-between items-center">
+                      <span>{{wishProduct.price}} EGP</span>
+                      <div class="flex items-center">
+                        <i class="fas fa-star text-yellow-300"></i>
+                        <span class="text-gray-500">{{wishProduct.ratingsAverage}}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                <button 
+                  (click)="addToCart(wishProduct.id)"
+                  class="bg-green-700 text-white border rounded w-[90%] mx-auto block py-1">
+                    Add to cart
+                </button>
+              </div>
+        }
+    </div>
+</section>
+
+
+
+
+
+
+
+
+

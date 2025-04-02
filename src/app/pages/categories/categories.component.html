@@ -1,0 +1,21 @@
+<section class="bg-green-600 w-3/4 mx-auto p-6 rounded-lg">
+    <div class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+        @for (category of categories(); track category._id){
+            <div class="inner card bg-white rounded-lg relative overflow-hidden shadow-md hover:shadow-lg transition-shadow">
+                <div class="h-40 p-4 flex items-center justify-center">
+                  <img [src]="category.image" class="w-full h-full object-contain" [alt]="category.name">
+                </div>
+                <div class="card-body px-4 py-3">
+                  <h3 class="font-medium text-lg text-center">{{category.name}}</h3>
+                </div>
+                <button
+                [routerLink]="['/categorydetails',category._id]"
+                  class=" bg-green-700 text-white border rounded w-[90%] block mx-auto  py-1">
+                    More Details
+                </button>
+              </div>
+              
+        }
+        
+    </div>
+</section>

@@ -1,0 +1,31 @@
+<section class="shadow w-3/4 m-auto">
+    <div class="flex justify-between px-3">
+        <h2 class="text-center text-[30px] font-[700] text-green-600">My Cart</h2>
+        <button class=" btn-main" (click)="clearCart()" >Clear cart</button>
+    </div>
+    @for (prod of cart.products; track prod.product.id) {
+        <div class="grid grid-cols-[10%_minmax(0,1fr)] border-b-[2px] mb-2">
+            <div>
+                <img [src]="prod.product.imageCover" class="w-full object-contain h-[100px]" [alt]="prod.product.title">
+            </div>
+            <div class="flex items-center justify-between" >
+                <div>
+                    <h2>{{prod.product.title}}</h2>
+                    <p>price: {{prod.price}}</p>
+                    <button (click)="removeitem(prod.product.id)"><i class="fa-solid fa-trash-can text-red-700"></i> Remove</button>
+                </div>
+                <div class="flex items-center">
+                    <button (click)="updateQuatity(prod.product.id,prod.count + 1)" class="text-green-700 px-1 text-2xl" ><i class="fa-solid fa-plus"></i></button>
+                    <span class="px-1">{{prod.count}}</span>
+                    <button (click)="updateQuatity(prod.product.id,prod.count - 1)" class="text-green-700 px-1 text-2xl"><i class="fa-solid fa-minus"></i></button>
+                </div>
+    
+            </div>
+        </div>
+    }
+    <button [routerLink]="['/checkout',cart._id]" class="btn-main">Online Payment</button>
+    
+
+</section>
+
+

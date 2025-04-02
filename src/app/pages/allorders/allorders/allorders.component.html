@@ -1,0 +1,47 @@
+<section class="shadow w-3/4 m-auto">
+    <h2 class="text-center text-[30px] font-[700] text-green-600">All Orders</h2>
+    @for (orderlist of userOrders; track $index) {
+        <div class="shadow p-4 m-3 border-2 rounded-lg {{ orderlist.isPaid ? 'border-green-500' : 'border-red-600' }}" >
+            <div>
+                <h3 class="font-bold">Order# {{orderlist.id}}</h3>
+                <p class="font-monospace">Customer: {{orderlist.user.name}}</p>
+                <p class="font-monospace">Total price: {{orderlist.totalOrderPrice}}</p>
+                <p class="font-monospace">Payment Method: {{orderlist.paymentMethodType}}</p>
+                <p class="font-monospace flex items-center gap-1">Payment state: 
+                    @if (orderlist.isPaid) {
+                        
+                        <i class="pt-1 fa-solid fa-check text-green-800"></i>
+                    }@else{
+                        <i class="pt-1 fa-solid fa-xmark text-red-700"></i>
+                    }</p>
+                <p class="font-monospace flex items-center gap-1">Delivered: 
+                    @if (orderlist.isDelivered) {
+                        <i class="pt-1 fa-solid fa-check text-green-800"></i>
+                    }@else{
+                        <i class="pt-1 fa-regular fa-hourglass-half text-yellow-500"></i>
+                    }</p>
+            </div>
+            @for (orderdetails of orderlist.cartItems; track $index) {
+                <div class="grid grid-cols-[10%_minmax(0,1fr)] border-b-[2px] mb-2 bg-slate-200 rounded py-1">
+                    <div>
+                        <img [src]="orderdetails.product.imageCover" class="w-full object-contain h-[100px]" [alt]="orderdetails.product.title">
+                    </div>
+                    <div class="flex items-center justify-between" >
+                        <div>
+                            <h2 class="font-semibold">{{orderdetails.product.title}}</h2>
+                            <h2>Quantity: {{orderdetails.count}}</h2>
+                            <p>Unit price: {{orderdetails.price}}</p>
+                            <p>Total price: {{orderdetails.price * orderdetails.count}}</p>
+
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    
+    }
+
+
+
+
+</section>

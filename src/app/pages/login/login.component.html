@@ -1,0 +1,60 @@
+<section   class="w-1/2 mx-auto shadow px-3 ">
+    <h2 class="text-center text-xl font-bold text-green-700">login Now</h2>
+    <form [formGroup]="login" (ngSubmit)="submit()">
+        <div class="mb-1 py-1">
+            <label for="email" class="block mb-2 text-sm font-medium text-gray-900 ">Email</label>
+            <input formControlName="email" type="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5">
+            @if(login.get('email')?.errors && login.get('email')?.touched){
+                <div class="flex p-4 mt-1 text-sm text-red-800 rounded-lg bg-red-50" role="alert">
+                    <div>
+                        <ul class="mt-1.5 list-disc list-inside">
+                          @if(login.get('email')?.getError('required')){
+                            <li>email is required</li>
+                          }
+                          @if(login.get('email')?.getError('email')){
+                            <li>email must be vaild</li>
+                          }
+                      </ul>
+                    </div>
+                </div>
+            }
+            
+        </div>
+        <div class="mb-1 py-1">
+            <label for="password" class="block mb-2 text-sm font-medium text-gray-900 ">Password</label>
+            <input formControlName="password" type="password" id="password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5">
+            
+            @if(login.get('password')?.errors && login.get('password')?.touched){
+                <div class="flex p-4 mt-1 text-sm text-red-800 rounded-lg bg-red-50" role="alert">
+                    <div>
+                        <ul class="mt-1.5 list-disc list-inside">
+                          @if (login.get('password')?.getError('required')) {
+                            <li>password is required</li>
+                          }
+                          @if (login.get('password')?.getError('pattern')) {
+                            <li>password must start with capital</li>
+                          }
+                        </ul>
+                    </div>
+                </div>
+            }
+
+        </div>
+        
+        <div class="d-flex justify-content-end align-items-center gap-3 ">
+          <a routerLink="/forgot">forgotPassword</a>
+          <button [disabled]="msgError" type="submit" class="disabled:bg-gray-600 btn-main">Sign In
+            @if(isLoading){
+              <i class="fas fa-spinner fa-spin"></i>
+            }
+          </button>
+        </div>
+        @if (msgError) {
+          <p class="bg-red-500 py-2">{{msgError}}</p>
+        }
+        @if(msgSuccess){
+          <p class="bg-green-500 py-2">{{msgSuccess}}</p>
+        }
+
+    </form>
+</section>

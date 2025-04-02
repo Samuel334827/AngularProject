@@ -1,0 +1,26 @@
+<section class="flex w-3/4 mx-auto gap-x-2">
+    <div>
+        @for (image of productDetails.images; track $index) {
+            <div class="w-[60px] my-1">
+                <img (click)="changeMainImage(productDetails.images[$index])" class="w-full cursor-pointer " [src]="productDetails.images[$index]" alt="">
+            </div>
+        }
+        
+    </div>
+    <div class="rounded-lg shadow-lg">
+        <img [src]="imageCover()" class="w-full " alt="">
+    </div>
+
+    <div class="w-3/4 h-fit flex flex-col gap-4 shadow-lg p-2 rounded-lg">
+        <h3 class="text-green-800 font-semibold">{{productDetails.title}}</h3>
+        <p>Price :{{productDetails.price}} EGP</p>
+        <p><i class="fas fa-star text-yellow-300"></i>{{productDetails.ratingsAverage}} ({{productDetails.ratingsQuantity}} reviews)</p>
+        <p class="">{{productDetails.description}}</p>
+        <p>Available in stock: {{productDetails.quantity}}</p>
+        <button                  
+            (click)="addToCart(productDetails.id)"
+            class="bg-green-700 text-white border rounded w-[90%] mx-auto block py-1">
+                Add to cart
+        </button>
+    </div>
+</section>
